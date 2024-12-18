@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Employee Data</h1>
+
+    <!-- Search Box -->
+    <input type="text" id="searchBox" placeholder="Search by Employee Name...">
+
+    <!-- Table -->
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>City</th>
+                    <th>Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in data.iterrows() %}
+                    <tr>
+                        <td>{{ row['name'] }}</td>
+                        <td>{{ row['age'] }}</td>
+                        <td>{{ row['salary'] }}</td>
+                        <td>{{ row['city'] }}</td>
+                        <td>
+                            <img src="{{ url_for('static', filename=row['photo']) }}" alt="{{ row['name'] }}">
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
